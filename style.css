@@ -17,20 +17,235 @@ body {
   display: flex;
   gap: 24px;
   align-items: flex-start;
+
+  height: calc(100vh - 80px);
 }
 
 .card-scale-wrapper {
   width: 100%;
+  min-width: 0;
+  height: 100%;
   overflow: hidden;
+
+  display: flex;
+  align-items: center;
 }
 
+/* 입력란 */
 
 .left {
-    width: 400px;
-    flex: 1;
-    display:flex;
-    flex-direction: column;
+  width: 480px;
+  flex: 0 0 480px;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
+  overflow: hidden;
+  padding-right: 2px;
+
+  background-color: #fff;
+  border: 1px solid #e8e2d8;
+  border-radius: 16px;
 }
+
+.left label {
+  margin-top: 16px;
+  margin-bottom: 6px;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a6350;
+}
+
+.left input,
+.left select,
+.left textarea {
+  width: 100%;
+  padding: 10px 12px;
+
+  border: 1px solid #d9d5cd;
+  border-radius: 8px;
+
+  background-color: #fff;
+  color: #333;
+
+  font: inherit;
+  font-size: 14px;
+}
+
+.left textarea {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+#input-other {
+  min-height: 140px;
+}
+
+.left input[type="text"]:focus,
+.left select:focus,
+.left textarea:focus {
+  border-color: #4a6350;
+  outline: 2px solid rgba(74, 99, 80, 0.2);
+  outline-offset: 1px;
+}
+
+.form-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  scrollbar-gutter: stable;
+  padding: 24px;
+}
+
+.form-actions {
+  flex-shrink: 0;
+  padding: 16px 24px 24px;
+
+  background-color: #fff;
+}
+
+
+.file-name {
+  display: block;
+  margin-top: 6px;
+    flex-shrink: 0;
+
+  font-size: 12px;
+  line-height: 1.4;
+  color: #999;
+
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-count {
+  align-self: flex-end;
+
+  margin-top: 4px;
+
+  font-size: 12px;
+  color: #999;
+}
+
+.item-count.over-limit {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+
+/* 버튼 관련 내용 */
+
+button {
+  width: 100%;
+  padding: 12px 16px;
+
+  border-radius: 8px;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s,
+    transform 0.1s;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+#apply-btn {
+  background-color: #fff;
+  border: 1px solid #4a6350;
+  color: #4a6350;
+}
+
+#apply-btn:hover {
+  background-color: #f1f5f1;
+}
+
+#download-btn {
+  margin-top: 10px;
+
+  background-color: #4a6350;
+  border: 1px solid #4a6350;
+  color: #fff;
+}
+
+#download-btn:hover {
+  background-color: #3d5342;
+  border-color: #3d5342;
+}
+
+button:focus-visible {
+  outline: 2px solid rgba(74, 99, 80, 0.4);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.file-input {
+  display: none;
+}
+
+.photo-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.photo-actions .photo-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 120px;
+  height: 42px;
+
+  margin: 0;
+  padding: 0 14px;
+
+  border: 1px solid #4a6350;
+  border-radius: 8px;
+
+  background-color: #fff;
+  color: #4a6350;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+#remove-photo-btn {
+  border-color: #d9d5cd;
+  color: #777;
+}
+
+#remove-photo-btn:hover {
+  background-color: #f7f3ec;
+}
+
+/* 출력란 */
 
 .right {
   width: 900px;
@@ -43,6 +258,8 @@ body {
   transform-origin: top left;
 }
 
+/* 오너칸 */
+
 .owner {
   width: 280px;
   flex-shrink: 0;
@@ -51,7 +268,7 @@ body {
   align-items: center;
   text-align: center;
   min-height: 500px;
-  padding: 30px 0px 10px 10px;
+  padding: 30px 0 10px;
   margin-right: 10px;
   border: 1px solid #eee;
   border-radius: 12px;
@@ -73,11 +290,15 @@ body {
   font-size: 20px;
   font-weight: bold;
   margin-top: 16px;
-  color: #4a6350;;
+  color: #4a6350;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .twitterid {
   display: inline;
+    overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .owner .value {
@@ -87,7 +308,6 @@ body {
 
 .owner hr {
   width: 80%;
-  align-items: center;
   border: none;
   border-top: 1px solid #eee;
   margin: 16px 0;
@@ -105,19 +325,21 @@ body {
   font-size: 13px;
   flex-shrink: 0;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .photo-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  
 }
 
-.sunteck-label {
-  align-self: flex-start;
-  font-size: 13px;
+.input-guide {
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: normal;
   color: #999;
-  margin-bottom: 8px;
 }
 
 .sunteck {
@@ -145,6 +367,8 @@ body {
   color: #fff;
   font-weight: bold;
 }
+
+/* 설명칸 */
 
 
 .gita {
@@ -184,6 +408,12 @@ body {
   color: #555;
 }
 
+.character-list li {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .character-list li:not(:last-child)::after {
   content: " · ";
   color: #ccc;
@@ -199,6 +429,8 @@ body {
 .gita-note .value {
   white-space: pre-line;
   padding-left: 12px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .value {
@@ -206,33 +438,39 @@ body {
   margin: 4px 2px 0 0;
 }
 
-button {
-  width: 90%;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #333;
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #555;
-}
-
-.capture-wrapper {
-  display: inline-block;
-  padding: 40px;
-  background-color: #f7f3ec;   /* body와 동일한 크림색 */
-}
 
 
 /*모바일*/
 
 @media (max-width: 768px) {
+  .card-scale-wrapper {
+    height: auto;
+    align-items: flex-start;
+  }
+
   .page-layout {
     flex-direction: column;
+    height: auto;
+  }
+
+  .left {
+    width: 100%;
+    height: auto;
+    flex: none;
+  }
+
+  .left input,
+  .left select,
+  .left textarea {
+    width: 100%;
+  }
+
+.form-scroll {
+    flex: none;
+    overflow-y: visible;
+  }
+
+  .form-actions {
+    padding-top: 16px;
   }
 }
